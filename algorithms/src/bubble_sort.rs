@@ -2,7 +2,7 @@ use std::cmp::{Ord, Ordering, PartialEq, PartialOrd};
 
 pub fn bubble_sort<T>(list: &mut [T])
     where
-        T: PartialOrd + PartialEq + Clone + ?Sized
+        T: PartialOrd + PartialEq
 {
     let n = list.len();
     for i in 0..n - 1 {
