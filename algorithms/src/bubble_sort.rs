@@ -2,16 +2,14 @@ use std::cmp::{Ord, Ordering, PartialEq, PartialOrd};
 
 pub fn bubble_sort<T>(list: &mut [T])
     where
-        T: PartialOrd + PartialEq + Clone + ?Sized
+        T: PartialOrd + PartialEq
 {
     let n = list.len();
     for i in 0..n - 1 {
         let mut flag: bool = true;
         for j in 0..n - i - 1 {
             if list[j] > list[j + 1] {
-                let temp = list[j].clone();
-                list[j] = list[j + 1].clone();
-                list[j + 1] = temp;
+                list.swap(j, j + 1);
                 flag = false;
             }
         }
@@ -20,6 +18,26 @@ pub fn bubble_sort<T>(list: &mut [T])
         }
     }
 }
+
+
+pub fn bubble_sort_by<T, F>(list: &mut [T], f: F)
+    where F: Fn(&T, &T) -> Ordering
+{
+    let n = list.len();
+    for i in 0..n - 1 {
+        let mut flag: bool = true;
+        for j in 0..n - i - 1 {
+            if let Ordering::Greater = f(&list[j], &list[j + 1]) {
+                list.swap(j, j + 1);
+                flag = false;
+            }
+        }
+        if flag {
+            break;
+        }
+    }
+}
+
 
 #[derive(Debug, Clone)]
 struct Employee {
@@ -72,6 +90,31 @@ mod tests {
             }
         ];
         bubble_sort(&mut arr);
+        assert_eq!(arr, [
+            Employee {
+                id: 1,
+                name: "Khan".to_string(),
+            },
+            Employee {
+                id: 2,
+                name: "Abrar".to_string(),
+            }
+        ]);
+    }
+
+    #[test]
+    fn test_bubble_sort_by() {
+        let mut arr = [
+            Employee {
+                id: 2,
+                name: "Abrar".to_string(),
+            },
+            Employee {
+                id: 1,
+                name: "Khan".to_string(),
+            }
+        ];
+        bubble_sort_by(&mut arr, |a: &Employee, b: &Employee| { a.id.cmp(&b.id) });
         assert_eq!(arr, [
             Employee {
                 id: 1,

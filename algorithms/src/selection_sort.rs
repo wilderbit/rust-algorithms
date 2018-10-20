@@ -2,7 +2,7 @@ use std::cmp::{Ord, Ordering, PartialEq, PartialOrd};
 
 pub fn selection_sort<T>(list: &mut [T])
     where
-        T: PartialOrd + PartialEq + ?Sized + Clone
+        T: PartialOrd + PartialEq
 {
     let n = list.len();
     for i in 0..n - 1 {
@@ -13,9 +13,7 @@ pub fn selection_sort<T>(list: &mut [T])
             }
         }
         if i != min_index {
-            let temp = list[min_index].clone();
-            list[min_index] = list[i].clone();
-            list[i] = temp;
+            list.swap(i, min_index);
         }
     }
 }
