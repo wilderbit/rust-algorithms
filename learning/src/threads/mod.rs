@@ -52,11 +52,7 @@ fn message_passing_data() {
     });
 }
 
-fn main() {
-//    simple_thread();
-
-//    static ABC: &'static [i32] = &[1, 2, 3, 4, 5];
-//    move_closure(&ABC);
+fn message_passing_multithread() {
     let (tx, rx) = mpsc::channel();
     let (tx1, rx1) = mpsc::channel();
     let handler1 = thread::spawn(move || {
@@ -97,4 +93,38 @@ fn main() {
 
     handler1.join().unwrap();
     handler2.join().unwrap();
+}
+
+
+fn multiple_producer_single_consumer() {
+    #[derive(Debug)]
+    struct Abc{id: String};
+    let (tx, tr) = mpsc::channel();
+    let new_tx = mpsc::Sender::clone(&tx);
+    thread::spawn(move || {
+        let v = vec![Abc{id: "1".to_string()}, Abc{id: "2".to_string()}, Abc{id:"3".to_string()}];
+        for number in v {
+            tx.send(number).unwrap();
+        }
+    });
+
+    thread::spawn(move || {
+        let v = vec![Abc{id: "1".to_string()}, Abc{id: "2".to_string()}, Abc{id:"3".to_string()}];
+        for number in v {
+            new_tx.send(number).unwrap();
+        }
+    });
+
+    for number in tr {
+        let number: Abc = number;
+        println!("{:#?}", number.id);
+    }
+}
+
+fn main() {
+    //    simple_thread();
+    //    static ABC: &'static [i32] = &[1, 2, 3, 4, 5];
+    //    move_closure(&ABC);
+    multiple_producer_single_consumer();
+    thread::sleep_ms(10000);
 }
