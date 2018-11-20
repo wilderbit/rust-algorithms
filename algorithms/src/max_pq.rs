@@ -10,7 +10,7 @@ impl MaxPQ {
         MaxPQ {
             data: vec![0; size],
             size: 0,
-            n: size
+            n: size,
         }
     }
 
@@ -33,7 +33,7 @@ impl MaxPQ {
                 data.swap(k, swap_pos);
                 k = swap_pos;
             } else {
-                break
+                break;
             }
         }
     }
@@ -78,7 +78,7 @@ fn main() {
     for elem in arr.iter() {
         st.insert(*elem)
     }
-//    st.del_max();
+    //    st.del_max();
     println!("{:?}", st);
     st.del_max();
     println!("{:?}", st);
