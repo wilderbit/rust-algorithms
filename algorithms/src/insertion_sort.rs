@@ -1,6 +1,7 @@
+use std;
 pub fn insertion_sort<T>(list: &mut [T])
-    where
-        T: std::cmp::PartialOrd + std::fmt::Debug + std::cmp::Ord + std::clone::Clone
+where
+    T: std::cmp::PartialOrd + std::fmt::Debug + std::cmp::Ord + std::clone::Clone,
 {
     for i in 1..list.len() {
         let mut j = (i - 1) as i32;
@@ -14,22 +15,17 @@ pub fn insertion_sort<T>(list: &mut [T])
     }
 }
 
-
-fn copy<T>(x: &T, y: &mut T)
-{
+fn copy<T>(x: &T, y: &mut T) {
     unsafe {
         std::ptr::copy(x, y, 1);
     }
 }
 
-
-fn replace<T>(x: *mut T, y: *mut T)
-{
+fn replace<T>(x: *mut T, y: *mut T) {
     unsafe {
         std::ptr::copy_nonoverlapping(x, y, 1);
     }
 }
-
 
 #[cfg(test)]
 mod test {

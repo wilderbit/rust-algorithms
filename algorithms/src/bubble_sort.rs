@@ -1,8 +1,8 @@
 use std::cmp::{Ord, Ordering, PartialEq, PartialOrd};
 
 pub fn bubble_sort<T>(list: &mut [T])
-    where
-        T: PartialOrd + PartialEq
+where
+    T: PartialOrd + PartialEq,
 {
     let n = list.len();
     for i in 0..n - 1 {
@@ -19,9 +19,9 @@ pub fn bubble_sort<T>(list: &mut [T])
     }
 }
 
-
 pub fn bubble_sort_by<T, F>(list: &mut [T], f: F)
-    where F: Fn(&T, &T) -> Ordering
+where
+    F: Fn(&T, &T) -> Ordering,
 {
     let n = list.len();
     for i in 0..n - 1 {
@@ -37,7 +37,6 @@ pub fn bubble_sort_by<T, F>(list: &mut [T], f: F)
         }
     }
 }
-
 
 #[derive(Debug, Clone)]
 struct Employee {
@@ -65,7 +64,6 @@ impl Ord for Employee {
 
 impl Eq for Employee {}
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -87,19 +85,22 @@ mod tests {
             Employee {
                 id: 1,
                 name: "Khan".to_string(),
-            }
+            },
         ];
         bubble_sort(&mut arr);
-        assert_eq!(arr, [
-            Employee {
-                id: 1,
-                name: "Khan".to_string(),
-            },
-            Employee {
-                id: 2,
-                name: "Abrar".to_string(),
-            }
-        ]);
+        assert_eq!(
+            arr,
+            [
+                Employee {
+                    id: 1,
+                    name: "Khan".to_string(),
+                },
+                Employee {
+                    id: 2,
+                    name: "Abrar".to_string(),
+                }
+            ]
+        );
     }
 
     #[test]
@@ -112,18 +113,21 @@ mod tests {
             Employee {
                 id: 1,
                 name: "Khan".to_string(),
-            }
-        ];
-        bubble_sort_by(&mut arr, |a: &Employee, b: &Employee| { a.id.cmp(&b.id) });
-        assert_eq!(arr, [
-            Employee {
-                id: 1,
-                name: "Khan".to_string(),
             },
-            Employee {
-                id: 2,
-                name: "Abrar".to_string(),
-            }
-        ]);
+        ];
+        bubble_sort_by(&mut arr, |a: &Employee, b: &Employee| a.id.cmp(&b.id));
+        assert_eq!(
+            arr,
+            [
+                Employee {
+                    id: 1,
+                    name: "Khan".to_string(),
+                },
+                Employee {
+                    id: 2,
+                    name: "Abrar".to_string(),
+                }
+            ]
+        );
     }
 }

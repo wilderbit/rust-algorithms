@@ -1,8 +1,8 @@
 use std::cmp::{Ord, Ordering, PartialEq, PartialOrd};
 
 pub fn selection_sort<T>(list: &mut [T])
-    where
-        T: PartialOrd + PartialEq
+where
+    T: PartialOrd + PartialEq,
 {
     let n = list.len();
     for i in 0..n - 1 {
@@ -17,7 +17,6 @@ pub fn selection_sort<T>(list: &mut [T])
         }
     }
 }
-
 
 #[derive(Debug, Clone)]
 struct Employee {
@@ -66,18 +65,21 @@ mod test {
             Employee {
                 id: 1,
                 name: "Khan".to_string(),
-            }
+            },
         ];
         selection_sort(&mut arr);
-        assert_eq!(arr, [
-            Employee {
-                id: 1,
-                name: "Khan".to_string(),
-            },
-            Employee {
-                id: 2,
-                name: "Abrar".to_string(),
-            }
-        ]);
+        assert_eq!(
+            arr,
+            [
+                Employee {
+                    id: 1,
+                    name: "Khan".to_string(),
+                },
+                Employee {
+                    id: 2,
+                    name: "Abrar".to_string(),
+                }
+            ]
+        );
     }
 }

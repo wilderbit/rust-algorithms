@@ -52,7 +52,7 @@ fn message_passing_data() {
     });
 }
 
-fn message_passing_multithread() {
+fn message_passing_multithreaded() {
     let (tx, rx) = mpsc::channel();
     let (tx1, rx1) = mpsc::channel();
     let handler1 = thread::spawn(move || {
