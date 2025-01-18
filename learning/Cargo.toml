@@ -2,5 +2,7 @@
 name = "learning"
 version = "0.1.0"
 authors = ["AbrarKhan <abrar@nitk@gmail.com>"]
+edition = "2021"
+
 
 [dependencies]
