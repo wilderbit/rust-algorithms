@@ -7,6 +7,10 @@ name = "algorithms"
 version = "0.1.0"
 
 [[package]]
+name = "data-structures"
+version = "0.1.0"
+
+[[package]]
 name = "learning"
 version = "0.1.0"
 

@@ -1,5 +1,5 @@
 [workspace]
-members = ["algorithms", "learning"]
+members = ["algorithms", "data-structures", "learning"]
 resolver = "2"
 
 [package]
