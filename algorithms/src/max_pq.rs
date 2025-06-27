@@ -1,5 +1,5 @@
 #[derive(Debug)]
-struct MaxPQ {
+pub struct MaxPQ {
     pub data: Vec<i32>,
     pub size: usize,
     pub n: usize,
