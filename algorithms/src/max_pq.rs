@@ -69,7 +69,7 @@ impl MaxPQ {
         self.size += 1
     }
 
-    pub fn max() {}
+    pub fn max(&mut self) {}
 }
 
 #[cfg(test)]
@@ -97,5 +97,4 @@ mod tests {
         //    MaxPQ::sink(&mut data, 0, 5);
         //    println!("{:?}", data);
     }
-
 }

@@ -8,7 +8,6 @@ pub struct DArr<T, const N: usize> {
 }
 
 impl<T: Copy, const N: usize> DArr<T, N> {
-
     pub fn new() -> Self {
         Self::new_with_capacity(16)
     }
@@ -19,7 +18,7 @@ impl<T: Copy, const N: usize> DArr<T, N> {
         Self {
             cap: 1000,
             len: 0,
-            pointer: boxed
+            pointer: boxed,
         }
     }
 
@@ -42,9 +41,7 @@ impl<T: Copy, const N: usize> DArr<T, N> {
     pub fn capacity(&self) -> usize {
         0
     }
-
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -52,6 +49,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let arr = DArr::new();
+        let _arr: DArr<i32, 10> = DArr::new();
     }
 }
