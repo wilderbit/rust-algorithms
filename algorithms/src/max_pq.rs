@@ -72,23 +72,30 @@ impl MaxPQ {
     pub fn max() {}
 }
 
-fn main() {
-    let mut st = MaxPQ::new(11);
-    let arr: [i32; 10] = [9, 19, 2, 3, 14, 12, 13, 7, 8, 15];
-    for elem in arr.iter() {
-        st.insert(*elem)
+#[cfg(test)]
+mod tests {
+    use crate::max_pq::MaxPQ;
+
+    #[test]
+    fn main() {
+        let mut st = MaxPQ::new(11);
+        let arr: [i32; 10] = [9, 19, 2, 3, 14, 12, 13, 7, 8, 15];
+        for elem in arr.iter() {
+            st.insert(*elem)
+        }
+        //    st.del_max();
+        println!("{:?}", st);
+        st.del_max();
+        println!("{:?}", st);
+        st.del_max();
+        println!("{:?}", st);
+        st.del_max();
+        println!("{:?}", st);
+        //    let mut data = [7, 4, 5, 2, 1, 3, 8];
+        //    MaxPQ::swim(&mut data, 6);
+        //    let mut data = [1, 5, 4, 3 , 1];
+        //    MaxPQ::sink(&mut data, 0, 5);
+        //    println!("{:?}", data);
     }
-    //    st.del_max();
-    println!("{:?}", st);
-    st.del_max();
-    println!("{:?}", st);
-    st.del_max();
-    println!("{:?}", st);
-    st.del_max();
-    println!("{:?}", st);
-    //    let mut data = [7, 4, 5, 2, 1, 3, 8];
-    //    MaxPQ::swim(&mut data, 6);
-    //    let mut data = [1, 5, 4, 3 , 1];
-    //    MaxPQ::sink(&mut data, 0, 5);
-    //    println!("{:?}", data);
+
 }
